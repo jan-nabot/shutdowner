@@ -9,15 +9,8 @@ def main():
 def setit(time):
     command = Popen('shutdown.exe -s -t {}'.format(time), shell = True)
 
-def abortit():
+def abortit(entryinput):
     command = Popen('shutdown.exe -a', shell = True)
-
-def awfulerrorhandler(functiontobewrappedinbelow):
-    '''This will be used as decorator. '''
-    try:
-        functiontobewrappedinbelow()
-    except:
-        print('Oops! Something went wrong. Maybe you are not using Windows or input is not sensible.')
 
 def GUI():
     def proceeder(entryinput): # bind probably pass something here, because with 0 arguments function throw TypeError
@@ -27,9 +20,6 @@ def GUI():
             custopt0.delete('0','end')
         else:
             setit(cvar.get() * 60) 
-    def aborter(entryinput):
-        abortit()
-    
 
     window = tkinter.Tk()
     window.title = 'Shutdowner'    
@@ -50,7 +40,7 @@ def GUI():
     custopt1.bind('<Button-1>', proceeder)
     abortopt0 = tkinter.Button(window, text = 'ABORT')
     abortopt0.grid(row = 3, column = 1)
-    abortopt0.bind('<Button-1>', aborter)
+    abortopt0.bind('<Button-1>', abortit)
     window.mainloop()
     
     
