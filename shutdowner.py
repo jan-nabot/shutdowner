@@ -6,7 +6,7 @@ from subprocess import Popen
 def main():
     GUI()
 
-def setit(time):
+def setit(time): # People say using shell argument is unsafe. Something to fix.
     command = Popen('shutdown.exe -s -t {}'.format(time), shell = True)
 
 def abortit(entryinput):
